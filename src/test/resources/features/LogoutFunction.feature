@@ -1,19 +1,18 @@
-@
-Feature: AZULCRM Log in feature
+
+Feature: AZULCRM Log out feature
   User Story :
-  As a user, I should be able to log in
+  As a user, I should be able to log out
 
 
   Background: log in page feature
-    Given users on the login page
+    Given users on the dashboard page
 
-#  1-All users can log in with valid credentials
-#  (We have 3 types of users such as HR user, Marketing user, Helpdesk user).
+#  1- The user can log out and ends up on the login page.
   Scenario Outline: Log in with valid credentials
     When users type username "<username>"  as a "<userType>"
     And users type password "<password>"
     And users click to the sign in button
-    Then users on the dashboard page
+    Then users on the login page
 
     Examples:
       | userType  | username                       | password |
@@ -21,10 +20,8 @@ Feature: AZULCRM Log in feature
       | MARKETING | marketing99@cybertekschool.com | UserUser |
       | HELPDESK  | helpdesk1@cybertekschool.com   | UserUser |
 
-#  2-"Incorrect login or password." should be displayed for invalid
-  #    1 - invalid username - valid password
-  #    2 - valid username - invalid password
-  #    3 - invalid username-invalid password
+#  2- The user can not go to the home page again
+#  by clicking the step back button after successfully logging out.
 
   Scenario Outline: Log in with invalid credentials
     When users type username "<username>"  as a "<userType>"
@@ -38,10 +35,8 @@ Feature: AZULCRM Log in feature
       | MARKETING | marketing99@cybertekschool.com  | UserUser1000 | Incorrect login or password |
       | HELPDESK  | helpdesk1000@cybertekschool.com | UserUser1000 | Incorrect login or password |
 
-#  3- "Please fill out this field" message should be displayed if the password or username is empty
-  #    1 - empty username - valid password
-  #    2 - valid username - empty password
-  #    3 - empty username - empty password
+#  3- The user must be logged out if the user close the open tab
+#  (all tabs if there are multiple open tabs)
 
   Scenario Outline: Log in with invalid credentials
     When users type username "<username>"  as a "<userType>"
