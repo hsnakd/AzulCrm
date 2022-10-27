@@ -1,4 +1,4 @@
-@
+@AZLC-1407
 Feature: AZULCRM Log in feature
   User Story :
   As a user, I should be able to log in
@@ -9,6 +9,7 @@ Feature: AZULCRM Log in feature
 
 #  1-All users can log in with valid credentials
 #  (We have 3 types of users such as HR user, Marketing user, Helpdesk user).
+  @AZLC-1442
   Scenario Outline: Log in with valid credentials
     When users type username "<username>"  as a "<userType>"
     And users type password "<password>"
@@ -25,8 +26,8 @@ Feature: AZULCRM Log in feature
   #    1 - invalid username - valid password
   #    2 - valid username - invalid password
   #    3 - invalid username-invalid password
-
-  Scenario Outline: Log in with invalid credentials
+  @AZLC-1443
+  Scenario Outline: error message should be displayed for invalid credentials
     When users type username "<username>"  as a "<userType>"
     And users type password "<password>"
     And users click to the sign in button
@@ -42,8 +43,8 @@ Feature: AZULCRM Log in feature
   #    1 - empty username - valid password
   #    2 - valid username - empty password
   #    3 - empty username - empty password
-
-  Scenario Outline: Log in with invalid credentials
+  @AZLC-1444
+  Scenario Outline: error message should be displayed for empty credentials
     When users type username "<username>"  as a "<userType>"
     And users type password "<password>"
     And users click to the sign in button
@@ -51,34 +52,34 @@ Feature: AZULCRM Log in feature
 
     Examples:
       | userType  | username                       | password | login message               |
-      | HR        |                                | UserUser | Incorrect login or password |
-      | MARKETING | marketing99@cybertekschool.com |          | Incorrect login or password |
-      | HELPDESK  |                                |          | Incorrect login or password |
+      | HR        |                                | UserUser | Please fill out this field |
+      | MARKETING | marketing99@cybertekschool.com |          | Please fill out this field |
+      | HELPDESK  |                                |          | Please fill out this field |
 
 
 #  4-User land on the ‘Get Password’ page after clicking on the "Forgot your password?" link
-
-  Scenario: Log in with forgot user password
+  @AZLC-1445
+  Scenario: users can go to get password page
     When users click forgot your password link
     Then User land on the "Get Password" page
 
 
 
 #  5-User can see "Remember Me" link exists and is clickable on the login page
-
-  Scenario: Log in with forgot user password
-    When users click remember me link
+  @AZLC-1446
+  Scenario: user can see "Remember Me" link exists and is clickable
+    When users check remember link exists
     Then User should see the remember me link is clickable
 
 #  6-User should see the password in bullet signs by default
-
-  Scenario: Log in with forgot user password
+  @AZLC-1447
+  Scenario: User should see the password in bullet signs
     When users type password "password"
     Then users should see the password in bullet signs
 
 #  7- Verify if the ‘Enter’ key of the keyboard is working correctly on the login page.
-
-  Scenario Outline: Log in with valid credentials
+  @AZLC-1448
+  Scenario Outline: users should check ‘Enter’ key of the keyboard is working correctly
     When users type username "<username>"  as a "<userType>"
     And users type password "<password>"
     And users hit enter to login
@@ -90,8 +91,8 @@ Feature: AZULCRM Log in feature
 
 
 #  8- All users can see their own usernames in the profile menu, after successful login
-  @wip
-  Scenario Outline: Log in with valid credentials
+  @AZLC-1449
+  Scenario Outline: users can see their own usernames in the profile menu
     When users type username "<username>"  as a "<userType>"
     And users type password "<password>"
     And users click to the sign in button

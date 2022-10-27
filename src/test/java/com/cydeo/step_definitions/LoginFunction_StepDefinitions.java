@@ -40,8 +40,6 @@ public class LoginFunction_StepDefinitions {
     @Then("users on the dashboard page")
     public void usersOnTheDashboardPage() {
         Assert.assertTrue(dashboardPage.activityStream.isDisplayed());
-//        dashboardPage.profileUsername.click();
-//        dashboardPage.logout.click();
     }
 
     @Then("users see the incorrect {string} displayed")
@@ -59,7 +57,7 @@ public class LoginFunction_StepDefinitions {
 
 
     @When("users click forgot your password link")
-    public void usersClickForgotYourPasswordLink(String expectedResult) {
+    public void usersClickForgotYourPasswordLink() {
         loginPage.forgotPassword.click();
     }
 
@@ -74,8 +72,15 @@ public class LoginFunction_StepDefinitions {
         loginPage.rememberMeLink.click();
     }
 
+    @When("users check remember link exists")
+    public void usersCheckRememberLinkExists() {
+        Assert.assertTrue(loginPage.rememberMeLink.isDisplayed());
+    }
+
     @Then("User should see the remember me link is clickable")
     public void userShouldSeeTheRememberMeLinkIsClickable() {
+        Assert.assertFalse(loginPage.rememberMeCheckBox.isSelected());
+        loginPage.rememberMeCheckBox.click();
         Assert.assertTrue(loginPage.rememberMeCheckBox.isSelected());
     }
 
@@ -97,4 +102,5 @@ public class LoginFunction_StepDefinitions {
        String actualResult = dashboardPage.profileUsername.getText();
         Assert.assertEquals(expectedResult,actualResult);
     }
+
 }

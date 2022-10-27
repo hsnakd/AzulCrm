@@ -39,6 +39,10 @@ public class LoginPage {
     @FindBy(xpath = "//label[@for='USER_REMEMBER']")
     public WebElement rememberMeLink;
 
+    @FindBy(xpath = "//div[@class='log-popup-header']")
+    public WebElement authorization;
+
+
 
 
 
