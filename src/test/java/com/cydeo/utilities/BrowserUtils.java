@@ -34,7 +34,7 @@ for given duration
         - If condition matches, will break loop.
     Arg3: expectedInTitle to be compared against actualTitle
      */
-    public static void switchWindowAndVerify(String expectedInUrl, String expectedInTitle){
+    public static void switchWindowAndVerify(WebDriver driver, String expectedInUrl, String expectedInTitle){
 
         Set<String> allWindowsHandles = Driver.getDriver().getWindowHandles();
 
@@ -53,6 +53,32 @@ for given duration
         String actualTitle = Driver.getDriver().getTitle();
         Assert.assertTrue(actualTitle.contains(expectedInTitle));
     }
+
+
+    /*
+    This method accepts 3 arguments.
+    Arg1: webdriver
+    Arg2: expectedInUrl : for verify if the url contains given String.
+        - If condition matches, will break loop.
+    Arg3: expectedInTitle to be compared against actualTitle
+     */
+    public static void switchWindowAndClose(String expectedUrl){
+
+
+        Set<String> allWindowsHandles = Driver.getDriver().getWindowHandles();
+
+        for (String each : allWindowsHandles) {
+
+            Driver.getDriver().switchTo().window(each);
+
+            System.out.println("Current URL: " + Driver.getDriver().getCurrentUrl());
+
+            if (Driver.getDriver().getCurrentUrl().contains(expectedUrl)){
+                Driver.getDriver().close();
+            }
+        }
+    }
+
 
     /*
     This method accepts a String "expectedTitle" and Asserts if it is true

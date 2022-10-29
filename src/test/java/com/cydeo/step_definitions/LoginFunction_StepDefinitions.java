@@ -1,7 +1,7 @@
 package com.cydeo.step_definitions;
 
-import com.cydeo.pages.DashboardPage;
 import com.cydeo.pages.LoginPage;
+import com.cydeo.pages.LogoutPage;
 import com.cydeo.utilities.ConfigurationReader;
 import com.cydeo.utilities.Driver;
 import io.cucumber.java.en.And;
@@ -14,7 +14,7 @@ import org.openqa.selenium.Keys;
 public class LoginFunction_StepDefinitions {
 
     LoginPage loginPage = new LoginPage();
-    DashboardPage dashboardPage = new DashboardPage();
+    LogoutPage logoutPage = new LogoutPage();
 
 
     @Given("users on the login page")
@@ -39,7 +39,7 @@ public class LoginFunction_StepDefinitions {
 
     @Then("users on the dashboard page")
     public void usersOnTheDashboardPage() {
-        Assert.assertTrue(dashboardPage.activityStream.isDisplayed());
+        Assert.assertTrue(logoutPage.activityStream.isDisplayed());
     }
 
     @Then("users see the incorrect {string} displayed")
@@ -99,7 +99,7 @@ public class LoginFunction_StepDefinitions {
 
     @Then("users can see their own {string} in the profile menu")
     public void usersCanSeeTheirOwnInTheProfileMenu(String expectedResult) {
-       String actualResult = dashboardPage.profileUsername.getText();
+       String actualResult = logoutPage.profileUsername.getText();
         Assert.assertEquals(expectedResult,actualResult);
     }
 

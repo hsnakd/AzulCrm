@@ -2,12 +2,14 @@ package com.cydeo.step_definitions;
 
 import com.cydeo.pages.LoginPage;
 import com.cydeo.pages.LogoutPage;
+import com.cydeo.utilities.BrowserUtils;
 import com.cydeo.utilities.ConfigurationReader;
 import com.cydeo.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
+import org.openqa.selenium.JavascriptExecutor;
 
 public class LogoutFunction_StepDefinitions {
     LoginPage loginPage = new LoginPage();
@@ -45,11 +47,18 @@ public class LogoutFunction_StepDefinitions {
 
     @When("user close the open tabs")
     public void user_close_the_open_tabs() {
-        Driver.getDriver().quit();
+        ((JavascriptExecutor) Driver.getDriver()).executeScript("window.open('https://google.com','_blank');");
+
+        BrowserUtils.switchWindowAndClose("azulcrm");
+
+        ((JavascriptExecutor) Driver.getDriver()).executeScript("window.open('https://qa.azulcrm.com/','_blank');");
+
+        BrowserUtils.switchWindowAndClose("google");
+
+
     }
     @Then("user must be logged out")
     public void user_must_be_logged_out() {
-        Driver.getDriver().get(ConfigurationReader.getProperty("web.url2"));
         Assert.assertFalse(logoutPage.activityStream.isDisplayed());
     }
 
