@@ -51,7 +51,7 @@ Feature: AZULCRM Log in feature
     Then users see the empty "<login message>" displayed
 
     Examples:
-      | userType  | username                       | password | login message               |
+      | userType  | username                       | password | login message              |
       | HR        |                                | UserUser | Please fill out this field |
       | MARKETING | marketing99@cybertekschool.com |          | Please fill out this field |
       | HELPDESK  |                                |          | Please fill out this field |
